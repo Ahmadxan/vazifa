@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Yangiliklar {% endblock %}
+
+{% block content %}
+
+    {% for news in news_list %}
+
+        <div class="container">
+            <div class="card mb-3">
+                <img src="/media/{{ news.image }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ news.title }}</h5>
+                    <p class="card-text">{{ news.body | safe }}</p>
+                    <a href="{% url 'news-detail' news.pk %}" class="btn btn-primary">Batafsil</a>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h4>{{ news.author }}</h4>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}

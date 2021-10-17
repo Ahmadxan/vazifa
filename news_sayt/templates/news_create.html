@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Blog qo'shish {% endblock %}
+
+{% block content %}
+
+    <h1>Yangi blog qo'shish.</h1>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Yuborish</button>
+    </form>
+
+{% endblock %}

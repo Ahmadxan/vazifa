@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Blogni o'chirish {% endblock %}
+
+{% block content %}
+
+    <h1>Blogni o'chirish.</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Rostdan ham sho postni o'chirishga rozimisiz?</p>
+        <button type="submit" class="btn btn-success">Ha</button>
+        <a href="{% url 'news-list' %}"><button type="submit" class="btn btn-success">Yo'q</button></a>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Yangiliklar {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="card mb-3">
+            <img src="/media/{{ news.image }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ news.title }}</h5>
+                <p class="card-text">{{ news.body }}</p>
+                <a href="{% url 'news-edit' news.pk %}" class="btn btn-primary">Tahrirlash</a>
+                <a href="{% url 'news-delete' news.pk %}" class="btn btn-primary">O'chirish</a>
+                <a href="{% url 'news-list' %}" class="btn btn-primary">Orqaga</a>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+            <form action="" method="post">{% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-success">Saqlash</button>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
