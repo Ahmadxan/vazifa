@@ -31,8 +31,11 @@ class News(models.Model):
 class Commit(models.Model):
     news = models.ForeignKey(News, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(null=False)
     message = RichTextField()
 
     def __str__(self):
-        return f"{self.full_name} - {self.news.title}"
+        return f"{self.full_name} - {self.news}"
+
+    def get_absolute_url(self):
+        return reverse('news-list')

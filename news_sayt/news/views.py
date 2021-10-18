@@ -47,11 +47,11 @@ class NewsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return obj.author == self.request.user
 
 
-class CommitCreateView(CreateView, LoginRequiredMixin):
+class CommitCreateView(LoginRequiredMixin, CreateView):
     model = models.Commit
-    fields = "__all__"
-    template_name = ('news_detail.html')
+    fields = ('news', 'full_name', 'message')
+    template_name = 'commit_create.html'
 
-    # def form_valid(self, form):
-    #     form.instance.news = self.request.news
-    #     return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.email = self.request.user.email
+        return super().form_valid(form)
